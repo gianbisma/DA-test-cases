@@ -1,0 +1,16 @@
+Solusi 1: Implementasi Indexing
+Menambahkan index pada kolom-kolom yang sering digunakan dalam query (terutama pada klausa WHERE, JOIN, dan ORDER BY) dapat secara signifikan mempercepat proses pencarian data. Index bekerja seperti daftar isi pada buku yang memungkinkan database menemukan data dengan cepat tanpa harus melakukan full table scan. Meskipun index membutuhkan ruang penyimpanan tambahan dan dapat memperlambat operasi INSERT/UPDATE, keuntungan dalam kecepatan query SELECT umumnya jauh lebih besar.
+
+Solusi 2: Implementasi Caching
+Menggunakan sistem caching seperti Redis atau Memcached untuk menyimpan hasil query yang sering diakses dapat mengurangi beban database secara drastis. Alih-alih mengeksekusi query yang sama berulang kali, aplikasi dapat mengambil data dari cache yang tersimpan di memory. Pendekatan ini sangat efektif untuk data yang sering dibaca tetapi jarang diperbarui. Caching mengurangi waktu akses karena operasi memory jauh lebih cepat dibandingkan operasi disk yang dilakukan database.
+
+Solusi 3: Optimasi Query
+Menganalisis dan menulis ulang query yang tidak efisien dapat memberikan peningkatan performa yang signifikan. Praktik ini meliputi:
+- Menghindari penggunaan SELECT * dan hanya memilih kolom yang dibutuhkan
+- Mengurangi jumlah JOIN yang kompleks
+- Menggunakan EXPLAIN untuk menganalisis execution plan query
+- Memastikan query memanfaatkan index yang tersedia
+Query yang dioptimasi akan menggunakan resource database lebih efisien dan mengurangi waktu eksekusi.
+
+Solusi 4: Partisi Database
+Memecah tabel besar menjadi beberapa bagian (partisi) berdasarkan kriteria tertentu seperti rentang tanggal atau ID dapat meningkatkan performa secara dramatis. Dengan partisi, database hanya perlu memindai sebagian kecil dari data yang relevan, bukan seluruh tabel. Ini sangat efektif untuk tabel yang memiliki jutaan atau milyaran baris data, karena mengurangi waktu akses dan meningkatkan kecepatan operasi maintenance seperti backup dan restore.
